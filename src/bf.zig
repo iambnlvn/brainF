@@ -11,7 +11,9 @@ pub const Op = union(enum) {
 };
 
 const tapeSize = 4 * 1024 * 1024;
-const tape = [tapeSize]u8;
+const Tape = [tapeSize]u8;
+
+pub var globalTape: Tape = [_]u8{0} ** tapeSize;
 
 pub fn parse(allocator: *Allocator, code: []const u8) !ArrayList(Op) {
     var ops = ArrayList(Op).init(allocator);
